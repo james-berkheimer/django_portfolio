@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django_portfolio"
+description = "A test project for learning Django"
+authors = [{name = "James Berkheirmrt", email = "james.berkheimer@gmail.com"}]
+version = "0.1.0"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "boto3",
+    "django",
+    "djangorestframework",
+    "plexapi",
+    "json5",
+    "redis",
+    "colorlog",
+    "pydantic",
+]
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.scripts]
+plex = "media_conveyor.testers.plex_tester:main"
+rping = "media_conveyor.testers.plex_tester:ping"
+rwrite = "media_conveyor.testers.plex_tester:write"
+rread = "media_conveyor.testers.plex_tester:read"
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "tox",
+    "build",
+    "pytest",
+    "pytest-django",
+    "coverage",
+]
+
+[tool.setuptools]
+include-package-data = true
+platforms = ["any"]
+license-files = ["LICENSE"]
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]
+namespaces = true
+where = ["src"]
+
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".cache",
+    ".direnv",
+    ".eggs",
+    "*.egg-info",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    "*.pyc",
+    "__pycache__",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    ".code-workspace"
+]
+select = ["B", "C", "E", "F", "N", "W", "B9"]
+ignore = [
+    "E203",
+    "E501",
+    "E722",
+    "N802",
+    "F401"
+]
+line-length = 100
