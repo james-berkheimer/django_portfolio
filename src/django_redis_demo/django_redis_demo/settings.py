@@ -31,6 +31,12 @@ ALLOWED_HOSTS = []
 REDIS_HOST = "localhost"
 REDIS_PORT = 6379
 
+PLEX_SERVER_IP = "192.168.1.42"
+PLEX_SERVER_PORT = 32400
+
+MEDIA_ROOT = BASE_DIR / "media/"
+MEDIA_URL = "media/"
+
 
 # Application definition
 

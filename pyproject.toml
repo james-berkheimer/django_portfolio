@@ -23,6 +23,7 @@ dependencies = [
     "redis",
     "colorlog",
     "pydantic",
+    "pillow"
 ]
 
 [project.readme]

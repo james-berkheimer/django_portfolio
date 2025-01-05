@@ -3,18 +3,65 @@
 <html>
 <head>
     <title>Items</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #313131;
+            color: #e8e8e8; /* Light grey color for text */
+        }
+        .list-group-item {
+            background-color: #313131; /* Same background for list items */
+            border-color: #e8e8e8; /* Light grey border for list items */
+        }
+        .card-subtitle {
+            background-color: #313131; /* Same background for card subtitle */
+        }
+        .card-header {
+            background-color: #313131; /* Same background for card header */
+            border-color: #e8e8e8; /* Light grey border for card header */
+        }
+        .card-header img {
+            margin-right: 10px; /* Add some space between the image and the title */
+        }
+    </style>
 </head>
 <body>
-    <h1>Items</h1>
-    <p>Found {{ count }} items.</p>
-    <ul>
-        {% for key, value in items.items %}
-            <li>
-                <strong>{{ key }}:</strong> {{ value }}
-            </li>
+    <div class="container">
+        <h1 class="mt-4">Items</h1>
+        <p>Found {{ items|length }} items.</p>
+        {% for name, media_type, value, thumbnail in items %}
+            <div class="card mt-4">
+                <div class="card-header">
+                    <img src="{{ thumbnail.image.url }}" alt="{{ name }}" class="float-left">
+                    <h2 class="card-title">{{ value.title }}</h2>  <!-- Display the movie title -->
+                    <h6 class="card-subtitle mb-2 text-muted">{{ value.year }}</h6>  <!-- Display the movie year -->
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% if value is mapping %}
+                        <li class="list-group-item">
+                            <strong>Title:</strong> {{ value.title }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Year:</strong> {{ value.year }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>File Path:</strong> {{ value.file_path }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Thumbnail Path:</strong> {{ value.thumb_path }}
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         {% empty %}
-            <li>No items found.</li>
+            <div class="card mt-4">
+                <div class="card-header">No items found.</div>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
+    <!-- Add Bootstrap JS and its dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
